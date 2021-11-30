@@ -1,0 +1,34 @@
+<h3 class='presentacion'>Listado de heroes</h3>
+
+<div class='listado'>
+    <% if (heroes) { %>
+        <table>
+            <tr>
+                <td>Nombre</td>
+                <td>Bando</td>
+                <td>Puntaje</td>
+            </tr>
+    <%  // Se recorren los heroes
+        if(heroes.results !== undefined){
+            for(var i=0; i < heroes.results.length; i++) { 
+                var heroe = heroes.results[i]; %>
+                <tr class='linea'>
+                    <td class='id'><%= heroe.name %></td>
+                    <td class='name'><%= heroe.connections['group-affiliation'] %></td>
+                    <td class='email'><%= heroe.powerstats.power == "null" ? heroe.powerstats.strength : heroe.powerstats.power %></td>
+                </tr>
+        <%  }
+            %></table><%
+        } else if (heroes.results === undefined) {
+            %>
+            <tr class='linea'>
+                <td class='id'><%= heroes.name %></td>
+                <td class='name'><%= heroes.connections['group-affiliation'] %></td>
+                <td class='email'><%= heroes.powerstats.power == "null" ? heroes.powerstats.strength : heroes.powerstats.power %></td>
+            </tr>
+            <%
+        }
+       } else { %>
+        <div class='linea'>No hay heroes.</div>
+    <% } %>
+</div>
